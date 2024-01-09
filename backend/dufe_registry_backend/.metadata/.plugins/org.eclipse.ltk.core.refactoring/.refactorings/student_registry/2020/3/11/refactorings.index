@@ -1,0 +1,36 @@
+1584162405811	Rename package 'edu.dufe.student.registry.utils'
+1584162977403	Delete element
+1584163081720	Rename package 'edu.dufe.student.registry.data'
+1584163219747	Delete element
+1584163247577	Delete element
+1584163287961	Rename compilation unit 'BaseData.java'
+1584164105576	Delete element
+1584164321102	Delete element
+1584164449948	Rename package 'edu.dufe.student.registry.entity.model'
+1584164585458	Move compilation unit
+1584167637892	Delete element
+1584167695712	Rename resource 'sql_test.sql'
+1584168382200	Rename type 'StudentModel'
+1584168662228	Copy compilation unit
+1584169350314	Copy compilation unit
+1584169383402	Rename compilation unit 'StudentRegistryFacade.java'
+1584169408557	Copy compilation unit
+1584169423731	Copy compilation unit
+1584169512494	Copy compilation unit
+1584169734863	Rename type 'RegistryConverter'
+1584171409526	Rename type 'PortalHomeController'
+1584171419280	Copy compilation unit
+1584171506295	Rename type 'PublicAccessBaseController'
+1584171640664	Rename package 'edu.dufe.student.registry.controller'
+1584171698448	Rename type 'LoginFacade'
+1584171728945	Rename type 'LoginFacadeImpl'
+1584172687478	Delete element
+1584172694924	Rename type 'RestException'
+1584172724997	Delete element
+1584172737001	Rename type 'BackendException'
+1584176267583	Copy compilation unit
+1584176602925	Copy compilation unit
+1584176647189	Copy compilation unit
+1584177060169	Copy compilation unit
+1584180629429	Move file
+1584180648501	Rename resource 'loginSchema.json'

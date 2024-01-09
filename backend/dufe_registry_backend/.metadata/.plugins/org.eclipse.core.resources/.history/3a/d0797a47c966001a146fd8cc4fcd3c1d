@@ -1,0 +1,56 @@
+package edu.dufe.student.registry.controller.adminconsole;
+
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.util.IOUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import edu.dufe.student.registry.controller.base.AdminBaseController;
+import edu.dufe.student.registry.data.in.StudentRegistryData;
+import edu.dufe.student.registry.data.out.DefaultResData;
+import edu.dufe.student.registry.data.out.StudentRegistryResData;
+import edu.dufe.student.registry.facade.AdminManagementFacade;
+import edu.dufe.student.registry.utils.ExcelUtils;
+
+@RestController
+@RequestMapping("/admin")
+public class AdminConsoleManagementController extends AdminBaseController{
+	
+	@Resource
+	private AdminManagementFacade adminManagementFacade;
+	@Resource
+	private ExcelUtils excelUtils;
+	
+	@RequestMapping(value= "/registry/{identityNum}",method = RequestMethod.GET)
+	public StudentRegistryResData queryRegistry(@PathVariable("identityNum") String identityNum) throws Exception {
+		StudentRegistryResData studentRegistryResData = new StudentRegistryResData();
+		StudentRegistryData studentRegistryData = adminManagementFacade.findRegistryByIdentityNum(identityNum);
+		studentRegistryResData.setStudentRegistryData(studentRegistryData);
+		return studentRegistryResData;
+	}
+	
+	@RequestMapping(value= "/registry/{identityNum}",method = RequestMethod.DELETE)
+	public DefaultResData deleteRegistry(@PathVariable("identityNum") String identityNum) throws Exception {
+		adminManagementFacade.deleteStudentRegistryByIdentityNum(identityNum);
+		DefaultResData defaultResData = new DefaultResData();
+		return defaultResData;
+	}
+	
+	@RequestMapping(value= "/registry/download",method = RequestMethod.GET)
+	public void downloadCsv(HttpServletResponse response) throws Exception {
+		ArrayList<StudentRegistryData> dataList = adminManagementFacade.findAllRegistry();
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment; filename=报名信息表.xlsx");
+        ByteArrayInputStream stream = excelUtils.generateExcelForRegistries(dataList);
+        IOUtils.copy(stream, response.getOutputStream());
+    }
+}
